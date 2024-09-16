@@ -1,0 +1,57 @@
+.search-film {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 20px 8px;
+	cursor: pointer;
+	height: 100%;
+	cursor: pointer;
+	transition: border-color $transition-300;
+	border: 1px solid transparent;
+	border-radius: 6px;
+
+	@include vp-1023 {
+		flex-direction: column;
+		align-items: start;
+		width: 220px;
+	}
+
+	&:hover {
+		border-color: rgba($color-white, 0.5);
+	}
+
+	&__img-wrap {
+		width: 40px;
+		height: 52px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba($color-white, 0.1);
+		overflow: hidden;
+
+		@include vp-1023 {
+			width: 158px;
+			height: 206px;
+		}
+	}
+
+	&__img-text {
+		display: block;
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+		padding: 4px;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 24px;
+	}
+}

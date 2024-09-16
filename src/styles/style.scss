@@ -1,0 +1,62 @@
+@import './global/Normalize.scss';
+@import './global/Fonts.scss';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: $color-bg-black;
+	color: $color-white;
+	font-family: $ff-play;
+	margin: 0;
+	padding: 0;
+}
+
+main {
+	flex-grow: 1;
+}
+
+img {
+	display: block;
+	height: auto;
+	width: 100%;
+	object-fit: cover;
+}
+
+a {
+	color: $color-white;
+	text-decoration: none;
+}
+
+.layout {
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh);
+}
+
+.container {
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 0 80px;
+	height: 100%;
+
+	@include vp-1023 {
+		padding: 0 20px;
+	}
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	border: 0;
+	clip: rect(0 0 0 0);
+	clip-path: inset(100%);
+}

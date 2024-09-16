@@ -1,0 +1,29 @@
+$color-bg-black: #0a0b0b;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-bg-secondary: #393b3c;
+$color-bg-brand-active: #6a5dc2;
+$color-gold: #a59400;
+$color-silver: #777777;
+$color-red: #c82020;
+$color-green: #308e21;
+
+$ff-play: 'Play', 'Arial', sans-serif;
+
+$transition-300: 0.3s ease;
+
+$vp-tablet: 1023px;
+$vp-mobile: 767px;
+
+@mixin vp-1023 {
+  @media (max-width: $vp-tablet) {
+    @content;
+  }
+}
+
+@mixin vp-767 {
+  @media (max-width: $vp-mobile) {
+    @content;
+  }
+}
+

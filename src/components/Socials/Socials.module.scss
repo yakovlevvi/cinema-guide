@@ -1,0 +1,55 @@
+.socials {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+
+	@include vp-767 {
+		margin-bottom: 12px;
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border: 1px solid rgba($color-white, 0.8);
+		border-radius: 8px;
+
+		@include vp-767 {
+			width: 24px;
+			height: 24px;
+		}
+	}
+
+	&__vk-icon {
+		@include vp-767 {
+			width: 13px;
+			height: 7px;
+		}
+	}
+
+	&__youtube-icon {
+		@include vp-767 {
+			width: 10px;
+			height: 7px;
+		}
+	}
+
+	&__ok-icon {
+		@include vp-767 {
+			width: 7px;
+			height: 12px;
+		}
+	}
+
+	&__tg-icon {
+		@include vp-767 {
+			width: 11px;
+			height: 9px;
+		}
+	}
+}

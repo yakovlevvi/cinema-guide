@@ -1,0 +1,151 @@
+.hero {
+	width: 100%;
+	min-height: 680px;
+	position: relative;
+	padding: 202px 0 122px;
+
+	@include vp-1023 {
+		padding: 56px 0 0;
+		min-height: unset;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__wrapper {
+		position: relative;
+		max-width: 600px;
+		z-index: 2;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		@include vp-1023 {
+			padding: 24px 0;
+			width: 100%;
+			max-width: unset;
+		}
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin: 0 0 60px;
+
+		@include vp-1023 {
+			gap: 12px;
+			margin-bottom: 32px;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: 48px;
+		line-height: 56px;
+		margin: 0;
+
+		@include vp-1023 {
+			font-size: 24px;
+			line-height: 32px;
+		}
+	}
+
+	&__description {
+		margin: 0;
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 32px;
+		color: rgba($color-white, 0.7);
+
+		@include vp-1023 {
+			font-size: 18px;
+			line-height: 24px;
+		}
+	}
+
+	&__btns {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	&__btn-wrap {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+
+		@include vp-1023 {
+			justify-content: center;
+		}
+	}
+
+	&__imgBlock {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 900px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: $color-bg-secondary;
+
+		@include vp-1023 {
+			position: relative;
+			width: 100%;
+			height: 260px;
+			overflow: hidden;
+		}
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(
+				90deg,
+				$color-bg-black 0%,
+				rgba($color-bg-black, 0.5) 20.41%,
+				rgba($color-bg-black, 0) 100%
+			);
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			@include vp-1023 {
+				transform: scaleX(-1);
+			}
+		}
+	}
+
+	&__img {
+		height: 100%;
+	}
+
+	&__imgText {
+		position: absolute;
+		top: 50%;
+		right: 20%;
+		transform: translate(0, -50%);
+		display: flex;
+		font-size: 30px;
+		text-align: center;
+		max-width: 350px;
+
+		@media (max-width: 1200px) {
+			right: 10%;
+		}
+
+		@include vp-1023 {
+			max-width: unset;
+			top: 50%;
+			left: 50%;
+			right: auto;
+			transform: translate(-50%, -50%);
+		}
+
+		@include vp-767 {
+			font-size: 20px;
+		}
+	}
+}

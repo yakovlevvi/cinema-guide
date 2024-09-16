@@ -1,0 +1,45 @@
+.header {
+	padding: 24px 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+	background-color: rgba($color-black, 0.5);
+	transition: background-color $transition-300;
+
+	@include vp-1023 {
+		padding: 16px 0;
+	}
+
+	&Scrolled {
+		background-color: rgba($color-black, 0.9);
+	}
+
+	&__logo-link {
+		transition: opacity $transition-300;
+		@include vp-1023 {
+			width: 136px;
+			height: 18px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&:hover, &:focus-visible {
+			opacity: 0.2;
+			outline:none;
+		}
+	}
+
+	&__wrapper {
+		display: flex;
+		align-items: center;
+		gap: 80px;
+
+		@include vp-1023 {
+			gap: 30px;
+			justify-content: space-between;
+		}
+	}
+}
