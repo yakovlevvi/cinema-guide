@@ -10,7 +10,7 @@ interface FilmCardProps {
 const FilmCard: FC<FilmCardProps> = ({ film }) => {
 	return (
 		<div className={styles.filmCard}>
-			<div className={styles.filmCard__imgWrap}>
+			<div className={styles['filmCard__img-wrap']}>
 				{film.posterUrl ? (
 					<CustomImage
 						className={styles.filmCard__img}

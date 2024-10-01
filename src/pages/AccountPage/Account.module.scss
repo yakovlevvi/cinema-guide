@@ -1,0 +1,72 @@
+.account {
+	padding: 160px 0 20px;
+
+	@include vp-767 {
+		padding-top: 80px;
+	}
+
+	&__title {
+		margin: 0 0 64px;
+		font-size: 48px;
+		line-height: 56px;
+
+		@include vp-767 {
+			font-size: 24px;
+			line-height: 32px;
+			margin-bottom: 40px;
+		}
+	}
+
+	&__menu {
+		display: flex;
+		align-items: center;
+		gap: 64px;
+		margin: 0 0 64px;
+
+		@include vp-767 {
+			gap: 24px;
+			margin-bottom: 40px;
+		}
+	}
+
+	&__menu-btn {
+		border: none;
+		background-color: transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $color-white;
+		gap: 8px;
+		padding: 0;
+		font-size: 24px;
+		line-height: 32px;
+		cursor: pointer;
+		border-bottom: 1.5px solid transparent;
+		transition: border-color $transition-300;
+		font-size: 24px;
+		line-height: 32px;
+
+		&--active {
+			border-bottom: 1.5px solid #dc5dfc;
+		}
+
+		&:hover,
+		&:focus-visible {
+			outline: none;
+			border-bottom: 1.5px solid #dc5dfc;
+		}
+	}
+
+	&__menu-big-text {
+		@include vp-767 {
+			display: none;
+		}
+	}
+
+	&__menu-small-text {
+		display: none;
+		@include vp-767 {
+			display: flex;
+		}
+	}
+}

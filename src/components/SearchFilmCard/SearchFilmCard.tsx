@@ -22,11 +22,13 @@ const SearchFilmCard: FC<SearchFilmCardProps> = ({ film }) => {
 						height={52}
 					/>
 				) : (
-					<span className={styles['search-film__img-text']}>{film.title[0]}</span>
+					<span className={styles['search-film__img-text']}>
+						{film.title[0]}
+					</span>
 				)}
 			</div>
 			<div className={styles['search-film__info']}>
-				<FilmHeading film={film} search={true}/>
+				<FilmHeading film={film} search={true} />
 				<span className={styles['search-film__title']}>{film.title}</span>
 			</div>
 		</div>

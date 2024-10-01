@@ -1,132 +1,84 @@
-import { NavLink, useNavigate } from 'react-router-dom'
-import SearchIcon from '../Icons/SearchIcon/SearchIcon'
+import linkStyles from '../UI/CustomLink/CustomLink.module.scss'
 import styles from './Menu.module.scss'
 
-import { useState } from 'react'
-import { fetchFilteredFilms, FilmList } from '../../api/Film'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { User } from '../../api/User'
+import { RootState, useAppDispatch } from '../../store'
+import { checkAuth } from '../../store/authSlice'
 import AuthForm from '../AuthForm/AuthForm'
-import GenreIcon from '../GenreIcon/GenreIcon'
+import GenreIcon from '../Icons/GenreIcon/GenreIcon'
 import UserIcon from '../Icons/UserIcon/UserIcon'
-import SearchInput from '../SearchInput/SearchInput'
-import SearchResults from '../SearchResults/SearchResults'
+import Search from '../Search/Search'
+import CustomLink from '../UI/CustomLink/CustomLink'
 import Modal from '../UI/Modal/Modal'
 
 const Menu = () => {
 	const [authModal, setAuthModal] = useState(false)
-	const [searchModal, setSearchModal] = useState(false)
 
-	const [queryFilms, setQueryFilms] = useState<FilmList>([])
-	const [searchInput, setSearchInput] = useState<string>('')
+	const dispatch = useAppDispatch()
+	const isAuthenticated = useSelector(
+		(state: RootState) => state.auth.isAuthenticated
+	)
+	const authStatus = useSelector((state: RootState) => state.auth.status)
 
-	const navigate = useNavigate()
+	const authUser: User | null = useSelector(
+		(state: RootState) => state.auth.user
+	)
 
-	// Обработчик изменения ввода для поиска
-	const handleInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		const str = e.target.value
-		setSearchInput(str)
-		const films = await fetchFilteredFilms(str)
-		setQueryFilms(films)
-	}
-
-	// Обработчик клика по результату поиска
-	const handleFilmClick = (filmId: number) => {
-		setQueryFilms([])
-		setSearchInput('')
-		setSearchModal(false)
-		navigate(`/movie/${filmId}`)
-	}
+	useEffect(() => {
+		if (authStatus === 'idle') {
+			dispatch(checkAuth())
+		}
+	}, [dispatch, authStatus, isAuthenticated])
 
 	return (
 		<div className={styles.menu}>
-			<NavLink
-				to="/"
-				className={({ isActive }) =>
-					[styles.menu__link, isActive ? styles.menu__linkActive : ''].join(' ')
-				}
-				end
-			>
+			<CustomLink className={styles.menu__link} to="/">
 				Главная
-			</NavLink>
-			<NavLink
-				to="/genres"
-				className={({ isActive }) =>
-					[styles.menu__link, isActive ? styles.menu__linkActive : ''].join(' ')
-				}
-			>
+			</CustomLink>
+			<CustomLink className={styles.menu__link} to="/genres">
 				Жанры
-			</NavLink>
-			<NavLink to="/genres" className={styles['menu__genre-link']}>
+			</CustomLink>
+			<CustomLink to="/genres" className={styles['menu__genre-link']} isIcon>
 				<GenreIcon />
-			</NavLink>
+			</CustomLink>
 
-			{/* Основной поиск */}
-			<div className={styles['menu__search-wrap']}>
-				<SearchInput
-					className={styles['menu__search-input']}
-					handleInput={handleInput}
-					searchInput={searchInput}
-				/>
+			<Search />
+
+			{isAuthenticated ? (
+				<CustomLink to="/account" className={styles['menu__genre-link']} isIcon>
+					<UserIcon />
+				</CustomLink>
+			) : (
 				<button
 					className={styles['menu__btn']}
-					onClick={() => setSearchModal(true)}
+					type="button"
+					onClick={() => setAuthModal(true)}
 				>
-					<SearchIcon className={styles['menu__search-icon']} />
+					<UserIcon />
 				</button>
-				{queryFilms.length > 0 && searchInput !== '' && (
-					<SearchResults
-						className={styles['menu__search-results']}
-						queryFilms={queryFilms}
-						handleClick={handleFilmClick}
-					/>
-				)}
-			</div>
-
-			{/* Модальное окно поиска */}
-			{searchModal && (
-				<div
-					className={styles['menu__search-modal']}
-					onClick={() => {
-						setSearchModal(false)
-						setSearchInput('')
-					}}
-				>
-					<SearchInput
-						className={styles['menu__modal-search-input']}
-						handleInput={handleInput}
-						searchInput={searchInput}
-					/>
-					{queryFilms.length > 0 && searchInput !== '' && (
-						<SearchResults
-							className={styles['menu__modal-search-results']}
-							queryFilms={queryFilms}
-							handleClick={handleFilmClick}
-						/>
-					)}
-				</div>
 			)}
 
-			{/* Кнопки авторизации */}
-			<button
-				className={styles.menu__link}
-				type="button"
-				onClick={() => setAuthModal(true)}
-			>
-				Войти
-			</button>
-			<button
-				className={styles['menu__btn']}
-				type="button"
-				onClick={() => setAuthModal(true)}
-			>
-				<UserIcon />
-			</button>
+			{isAuthenticated ? (
+				<CustomLink to="/account" className={styles['menu__link']}>
+					{authUser ? authUser.surname : 'Loading...'}
+				</CustomLink>
+			) : (
+				<button
+					className={linkStyles.link}
+					type="button"
+					onClick={() => setAuthModal(true)}
+				>
+					Войти
+				</button>
+			)}
 
-			{/* Модальное окно авторизации */}
 			<Modal
 				isVisible={authModal}
 				setIsVisible={(isVisible) => setAuthModal(isVisible)}
 			>
-				<AuthForm />
+				<AuthForm closeModal={() => setAuthModal(false)} />
 			</Modal>
 		</div>
 	)

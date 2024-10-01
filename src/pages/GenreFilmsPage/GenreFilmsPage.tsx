@@ -1,7 +1,8 @@
+import { FC } from 'react'
 import { useParams } from 'react-router-dom'
 import GenreFilms from '../../components/GenreFilms/GenreFilms'
 
-const GenreFilmsPage = () => {
+const GenreFilmsPage: FC = () => {
 	const { genre } = useParams()
 
 	if (genre) {

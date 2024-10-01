@@ -1,18 +1,28 @@
 .customInput {
 	position: relative;
 	width: 100%;
-
 	$root: &;
 
 	&--dark {
 		#{$root}__field {
 			background-color: $color-bg-secondary;
 			color: rgba($color-white, 0.5);
-			border: none;
+			border: 1px solid transparent;
+			color: $color-white;
 		}
 
 		#{$root}__icon {
 			color: rgba($color-white, 0.5);
+		}
+	}
+
+	&--error {
+		#{$root}__field {
+			border-color: $color-error-red;
+		}
+
+		#{$root}__icon {
+			color: $color-error-red;
 		}
 	}
 
@@ -25,7 +35,18 @@
 		font-weight: 400;
 		font-size: 18px;
 		line-height: 24px;
-		color: rgba($color-black, 0.4);
+		color: $color-black;
+		transition: border-color $transition-300;
+
+		&:hover,
+		&:focus-visible {
+			outline: none;
+			border-color: $color-bg-brand-active;
+
+			~ #{$root}__icon {
+				color: $color-bg-brand-active;
+			}
+		}
 	}
 
 	&__icon {
@@ -35,5 +56,6 @@
 		transform: translateY(-50%);
 		pointer-events: none;
 		color: rgba($color-black, 0.4);
+		transition: color $transition-300;
 	}
 }

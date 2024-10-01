@@ -1,4 +1,10 @@
-const KeyIcon = ({...props}) => {
+import { FC } from 'react'
+
+interface KeyIconProps {
+	className?: string
+}
+
+const KeyIcon: FC<KeyIconProps> = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

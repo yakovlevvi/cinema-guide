@@ -1,4 +1,10 @@
-const SearchIcon = ({ ...props }) => {
+import { FC } from 'react'
+
+interface SearchIconProps {
+	className?: string
+}
+
+const SearchIcon: FC<SearchIconProps> = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

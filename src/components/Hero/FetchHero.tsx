@@ -4,8 +4,9 @@ import { queryClient } from '../../api/queryClient'
 import FetchError from '../UI/FetchError/FetchError'
 import Loader from '../UI/Loader/Loader'
 import Hero from './Hero'
+import { FC } from 'react'
 
-const FetchHero = () => {
+const FetchHero: FC = () => {
 	const randomFilmQuery = useQuery(
 		{
 			queryFn: () => fetchRandomFilm(),

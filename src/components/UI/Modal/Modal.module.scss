@@ -4,20 +4,27 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: rgba($color-black, 0.5);
+	background-color: rgba($color-black, 0.9);
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 10;
-	display: none;
+	z-index: 20;
+	opacity: 0;
+	transform: scale(0.95);
+	transition: opacity $transition-300, transform $transition-300;
+	pointer-events: none;
 
 	&--active {
-		display: flex;
+		opacity: 1;
+		transform: scale(1);
+		pointer-events: all;
 	}
 
 	&__wrap {
-		width: 564px;
 		padding: 0 72px;
 		position: relative;
+		display: flex;
+		justify-content: center;
 
 		@include vp-1023 {
 			width: 100%;
@@ -25,25 +32,10 @@
 		}
 	}
 
-	&__inner {
-		background-color: $color-white;
-		padding: 64px 40px;
-		border-radius: 24px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		color: $color-black;
-
-		@include vp-1023 {
-			padding: 64px 20px 32px;
-			position: relative;
-		}
-	}
-
 	&__logo-icon {
 		width: 180px;
 		height: 24px;
-		margin: 0 0 40px;
+		margin: 0 auto 40px;
 
 		@include vp-1023 {
 			margin-bottom: 32px;
@@ -59,10 +51,11 @@
 		position: absolute;
 		top: 0;
 		right: 0;
+		z-index: 20;
 
 		@include vp-1023 {
 			top: 8px;
-			right: 8px;
+			right: 28px;
 		}
 	}
 }

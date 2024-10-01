@@ -1,4 +1,10 @@
-const MailIcon = ({ ...props }) => {
+import { FC } from 'react'
+
+interface MailIconProps {
+	className?: string
+}
+
+const MailIcon: FC<MailIconProps> = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

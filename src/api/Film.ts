@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { genresURL, MovieURL, randomFilmURL, topFilmsURL } from '../utils/urls'
+import { BASE_URL } from './BASE_URL'
 
 export const FilmSchema = z.object({
 	id: z.number(),
@@ -37,19 +37,19 @@ export const FilmListSchema = z.array(FilmSchema)
 export type FilmList = z.infer<typeof FilmListSchema>
 
 export async function fetchTopFilms(): Promise<FilmList> {
-	const response = await fetch(topFilmsURL)
+	const response = await fetch(BASE_URL + '/movie/top10')
 	const data = await response.json()
 	return FilmListSchema.parse(data)
 }
 
 export async function fetchRandomFilm(): Promise<Film> {
-	const response = await fetch(randomFilmURL)
+	const response = await fetch(BASE_URL + '/movie/random')
 	const data = await response.json()
 	return FilmSchema.parse(data)
 }
 
 export async function fetchGenres(): Promise<string[]> {
-	const response = await fetch(genresURL)
+	const response = await fetch(BASE_URL + '/movie/genres')
 	const data = await response.json()
 	return data
 }
@@ -58,7 +58,7 @@ export async function getGenrePhotoUrl(
 	genre: string,
 	number: number
 ): Promise<string> {
-	const response = await fetch(MovieURL + `?count=20&genre=${genre}`)
+	const response = await fetch(BASE_URL + `/movie/?count=20&genre=${genre}`)
 	const data = await response.json()
 	const posterUrl = data[number].posterUrl
 	return posterUrl
@@ -69,20 +69,20 @@ export async function fetchGenreFilms(
 	page: number
 ): Promise<FilmList> {
 	const response = await fetch(
-		MovieURL + `?count=15&genre=${genre}&page=${page}`
+		BASE_URL + `/movie/?count=15&genre=${genre}&page=${page}`
 	)
 	const data = await response.json()
 	return FilmListSchema.parse(data)
 }
 
 export async function fetchFilm(filmId: string): Promise<Film> {
-	const response = await fetch(MovieURL + `/${filmId}`)
+	const response = await fetch(BASE_URL + `/movie/${filmId}`)
 	const data = await response.json()
 	return FilmSchema.parse(data)
 }
 
 export async function fetchFilteredFilms(str: string) {
-	const response = await fetch(MovieURL + `?title=${str}`)
+	const response = await fetch(BASE_URL + `/movie/?count=5&title=${str}`)
 	const data = await response.json()
 	return FilmListSchema.parse(data)
 }

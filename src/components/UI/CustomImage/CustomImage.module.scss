@@ -1,0 +1,8 @@
+.img {
+	transition: opacity $transition-300;
+	opacity: 0;
+
+	&--active {
+		opacity: 1;
+	}
+}

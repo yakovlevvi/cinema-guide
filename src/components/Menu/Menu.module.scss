@@ -3,6 +3,7 @@
 	align-items: center;
 	gap: 40px;
 	flex-grow: 1;
+	position: relative;
 
 	@include vp-1023 {
 		gap: 20px;
@@ -10,105 +11,26 @@
 	}
 
 	&__link {
-		font-size: 24px;
-		line-height: 32px;
-		position: relative;
-		background: transparent;
-		border: none;
-		margin: 0;
-		padding: 0;
-		color: $color-white;
-		cursor: pointer;
-		user-select: none;
-		border-bottom: 1.5px solid transparent;
-		transition: border $transition-300;
-
 		@include vp-1023 {
 			display: none;
-		}
-
-		&:hover,
-		&:focus-visible {
-			border-bottom: 1.5px solid #dc5dfc;
-			outline: none;
-		}
-
-		&Active {
-			border-bottom: 1.5px solid #dc5dfc;
-			pointer-events: none;
 		}
 	}
 
 	&__genre-link {
 		display: none;
+		transition: color $transition-300;
+
+		&:hover,
+		&:focus-visible {
+			color: $color-bg-brand-active;
+			outline: none;
+		}
 
 		@include vp-1023 {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
-	}
-
-	&__search-wrap {
-		width: 100%;
-		position: relative;
-	}
-
-	&__search-input {
-		@include vp-1023 {
-			display: none;
-		}
-	}
-
-	&__search-modal {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		z-index: 20;
-		background-color: rgba($color-black, 0.5);
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		padding: 16px 20px;
-	}
-
-	&__modal-search-results {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		display: flex;
-		gap: 16px;
-		align-items: start;
-		background-color: $color-bg-secondary;
-		padding: 24px 20px;
-		overflow: auto;
-	}
-
-	&__search-results {
-		margin: 0;
-		padding: 8px;
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		max-height: calc(100vh - 100px);
-		overflow: scroll;
-		position: absolute;
-		top: 50px;
-		left: 0;
-		background-color: $color-bg-secondary;
-		z-index: 9;
-
-		@include vp-1023 {
-			display: none;
-		}
-	}
-
-	&__search-result {
-		cursor: pointer;
-		height: 100%;
 	}
 
 	&__btn {
@@ -118,6 +40,13 @@
 		padding: 0;
 		color: $color-white;
 		cursor: pointer;
+		transition: color $transition-300;
+
+		&:hover,
+		&:focus-visible {
+			color: $color-bg-brand-active;
+			outline: none;
+		}
 
 		@include vp-1023 {
 			display: flex;

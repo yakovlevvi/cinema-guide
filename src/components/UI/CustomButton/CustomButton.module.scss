@@ -20,6 +20,12 @@
 
 	&--primary {
 		background-color: $color-bg-brand-active;
+		transition: opacity $transition-300;
+
+		&:hover, &:focus-visible {
+			opacity: 0.8;
+			outline:none;
+		}
 
 		@include vp-1023 {
 			width: 100%;
@@ -34,6 +40,7 @@
 
 	&--icon {
 		padding: 16px 22px;
+		color: transparent
 	}
 
 	&:hover,

@@ -1,4 +1,10 @@
-const ChevronIcon = ({ ...props }) => {
+import { FC } from 'react'
+
+interface ChevronIconProps {
+	className?: string
+}
+
+const ChevronIcon: FC<ChevronIconProps> = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

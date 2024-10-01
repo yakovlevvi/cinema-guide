@@ -1,0 +1,15 @@
+.trailer {
+	width: 960px;
+	height: 540px;
+	border: 1px solid rgba($color-white, 0.5);
+	aspect-ratio: 960 / 540;
+
+	@media (max-width: 1200px) {
+		width: 600px;
+		height: auto;
+	}
+
+	@include vp-1023 {
+		width: 100%;
+	}
+}

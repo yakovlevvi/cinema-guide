@@ -4,10 +4,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 
 	&__inner {
 		margin: 0 auto;
 		width: 20%;
+		max-width: 150px;
 		padding: 8px;
 		aspect-ratio: 1;
 		border-radius: 50%;

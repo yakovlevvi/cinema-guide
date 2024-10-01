@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import FetchGenres from '../../components/Genres/FetchGenres'
 
-const GenresPage = () => {
+const GenresPage: FC = () => {
 	return <FetchGenres />
 }
 

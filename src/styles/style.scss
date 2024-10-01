@@ -15,9 +15,6 @@ body {
 	padding: 0;
 }
 
-main {
-	flex-grow: 1;
-}
 
 img {
 	display: block;
@@ -29,6 +26,10 @@ img {
 a {
 	color: $color-white;
 	text-decoration: none;
+}
+
+.main {
+	flex-grow: 1;
 }
 
 .layout {

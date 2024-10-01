@@ -30,7 +30,7 @@ const FilmHeading: FC<FilmHeadingProps> = ({ film, search }) => {
 		<div className={headingStyles.join(' ')}>
 			{film.tmdbRating > 0 && (
 				<span className={ratingClasses}>
-					<StarIcon />
+					<StarIcon className={styles['heading__rating-icon']} />
 					<span className={styles.heading__ratingText}>
 						{film.tmdbRating.toFixed(1)}
 					</span>

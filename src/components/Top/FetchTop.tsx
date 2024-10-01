@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
+import { FC } from 'react'
 import { fetchTopFilms } from '../../api/Film'
 import { queryClient } from '../../api/queryClient'
 import FetchError from '../UI/FetchError/FetchError'
 import Loader from '../UI/Loader/Loader'
 import Top from './Top'
 
-const FetchTop = () => {
+const FetchTop: FC = () => {
 	const topFilmsQuery = useQuery(
 		{
 			queryFn: () => fetchTopFilms(),

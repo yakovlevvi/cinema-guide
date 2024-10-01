@@ -18,6 +18,17 @@
 		height: 36px;
 		border: 1px solid rgba($color-white, 0.8);
 		border-radius: 8px;
+		transition: border-color $transition-300;
+
+		svg {
+			transition: color $transition-300;
+		}
+
+		&:hover, &:focus-visible {
+			border-color: $color-bg-brand-active;
+			color: $color-bg-brand-active;
+			outline:none;
+		}
 
 		@include vp-767 {
 			width: 24px;

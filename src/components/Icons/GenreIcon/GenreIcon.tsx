@@ -1,4 +1,6 @@
-const GenreIcon = ({ ...props }) => {
+import { FC } from 'react'
+
+const GenreIcon: FC = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

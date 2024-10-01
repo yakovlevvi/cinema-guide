@@ -1,4 +1,6 @@
-const RefreshIcon = ({ ...props }) => {
+import { FC } from 'react'
+
+const RefreshIcon: FC = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

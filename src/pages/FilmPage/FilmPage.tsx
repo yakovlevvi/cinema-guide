@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { FC } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchFilm } from '../../api/Film'
 import { queryClient } from '../../api/queryClient'
@@ -7,7 +8,7 @@ import Hero from '../../components/Hero/Hero'
 import FetchError from '../../components/UI/FetchError/FetchError'
 import Loader from '../../components/UI/Loader/Loader'
 
-const FilmPage = () => {
+const FilmPage: FC = () => {
 	const { filmId } = useParams<{ filmId: string }>()
 
 	const FilmQuery = useQuery(

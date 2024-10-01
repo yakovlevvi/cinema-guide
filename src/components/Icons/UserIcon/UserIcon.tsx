@@ -1,4 +1,10 @@
-const UserIcon = ({...props}) => {
+import { FC } from 'react'
+
+interface UserIconProps {
+	className?: string
+}
+
+const UserIcon: FC<UserIconProps> = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

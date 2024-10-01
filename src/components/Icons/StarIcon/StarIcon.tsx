@@ -1,4 +1,6 @@
-const StarIcon = ({ ...props }) => {
+import { FC } from 'react'
+
+const StarIcon: FC = ({ ...props }) => {
 	return (
 		<svg
 			width="16"

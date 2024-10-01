@@ -1,4 +1,6 @@
-const LogoIcon = ({...props}) => {
+import { FC } from 'react'
+
+const LogoIcon: FC = ({ ...props }) => {
 	return (
 		<svg
 			width="240"

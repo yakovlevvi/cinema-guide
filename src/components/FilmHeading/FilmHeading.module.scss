@@ -1,7 +1,9 @@
 .heading {
 	display: flex;
 	align-items: center;
-	gap: 16px;
+	flex-wrap: wrap;
+	gap: 8px 16px;
+	$root: &;
 
 	@include vp-1023 {
 		margin-bottom: 12px;
@@ -9,7 +11,26 @@
 
 	&--search {
 		flex-wrap: wrap;
-		gap: 12px;
+		gap: 6px 12px;
+
+		#{$root}__rating {
+			padding: 2px 8px;
+		}
+
+		#{$root}__rating-icon {
+			width: 10px;
+			height: 10px;
+		}
+
+		#{$root}__ratingText {
+			font-size: 12px;
+			line-height: 16px;
+		}
+
+		#{$root}__info {
+			font-size: 14px;
+			line-height: 20px;
+		}
 	}
 
 	&__rating {
@@ -45,6 +66,7 @@
 		font-size: 18px;
 		line-height: 24px;
 		color: rgba($color-white, 0.7);
+		max-width: 350px;
 
 		@include vp-1023 {
 			font-size: 14px;

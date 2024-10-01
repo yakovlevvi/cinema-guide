@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Menu from '../Menu/Menu'
 import styles from './Header.module.scss'
 
 import LogoIcon from '../Icons/LogoIcon/LogoIcon'
 
-const Header = () => {
+const Header: FC = () => {
 	const [isScrolled, setIsScrolled] = useState(false)
 
 	useEffect(() => {
@@ -26,7 +26,7 @@ const Header = () => {
 	}, [])
 
 	return (
-		<header
+		<div
 			className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`}
 		>
 			<div className="container">
@@ -37,7 +37,7 @@ const Header = () => {
 					<Menu />
 				</div>
 			</div>
-		</header>
+		</div>
 	)
 }
 

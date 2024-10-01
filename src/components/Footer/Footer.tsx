@@ -1,9 +1,10 @@
+import { FC } from 'react'
 import Socials from '../Socials/Socials'
 import styles from './Footer.module.scss'
 
-const Footer = () => {
+const Footer: FC = () => {
 	return (
-		<footer className={styles.footer}>
+		<div className={styles.footer}>
 			<div className="container">
 				<div className={styles.footer__wrapper}>
 					<div className={styles.footer__info}>
@@ -32,7 +33,7 @@ const Footer = () => {
 					<Socials />
 				</div>
 			</div>
-		</footer>
+		</div>
 	)
 }
 

@@ -1,4 +1,6 @@
-const CloseIcon = ({ ...props }) => {
+import { FC } from 'react'
+
+const CloseIcon: FC = ({ ...props }) => {
 	return (
 		<svg
 			width="24"

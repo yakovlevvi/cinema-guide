@@ -10,21 +10,21 @@ interface TopProps {
 
 const Top: FC<TopProps> = ({ topFilms }) => {
 	return (
-		<section className={styles.top}>
+		<div className={styles.top}>
 			<div className="container">
 				<h2 className={styles.top__title}>Топ 10 фильмов</h2>
 				<ul className={styles.top__list}>
 					{topFilms.map((film: Film, index) => (
 						<li className={styles.top__item} key={film.id}>
-							<span className={styles.top__place}>{index + 1}</span>
 							<Link to={`/movie/${film.id}`}>
 								<FilmCard film={film} />
 							</Link>
+							<span className={styles.top__place}>{index + 1}</span>
 						</li>
 					))}
 				</ul>
 			</div>
-		</section>
+		</div>
 	)
 }
 
