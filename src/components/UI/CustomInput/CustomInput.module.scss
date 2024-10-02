@@ -51,11 +51,16 @@
 
 	&__icon {
 		position: absolute;
-		top: 50%;
-		left: 16px;
-		transform: translateY(-50%);
+		top: 14px;
+		left: 14px;
 		pointer-events: none;
 		color: rgba($color-black, 0.4);
 		transition: color $transition-300;
+	}
+
+	&__error {
+		color: $color-error-red;
+		font-size: 12px;
+		line-height: 14px;
 	}
 }

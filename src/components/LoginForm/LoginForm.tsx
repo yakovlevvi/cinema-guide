@@ -61,21 +61,21 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
 					isDark={false}
 					placeholder="Электронная почта"
 					type="email"
+					error={errors.email?.message}
 					{...register('email')}
 				>
 					<MailIcon className={iconStyles.customInput__icon} />
 				</CustomInput>
-				{errors.email && <span>{errors.email.message}</span>}
 
 				<CustomInput
 					isDark={false}
 					placeholder="Пароль"
 					type="password"
+					error={errors.password?.message}
 					{...register('password')}
 				>
 					<KeyIcon className={iconStyles.customInput__icon} />
 				</CustomInput>
-				{errors.password && <span>{errors.password.message}</span>}
 			</div>
 			<CustomButton>Войти</CustomButton>
 			{loginMutation.error && <span>Ошибка запроса</span>}

@@ -19,8 +19,10 @@ const RegisterSchema = z
 		email: z.string().email('Некорректный email'),
 		name: z.string().min(5, 'Имя должно содержать минимум 5 символов'),
 		surname: z.string().min(5, 'Фамилия должна содержать минимум 5 символов'),
-		password: z.string().min(6, 'Пароль должен содержать 6 символов'),
-		confirmPassword: z.string().min(6, 'Пароль должен содержать 6 символов'),
+		password: z.string().min(6, 'Пароль должен содержать минимум 6 символов'),
+		confirmPassword: z
+			.string()
+			.min(6, 'Пароль должен содержать минимум 6 символов'),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: 'Пароли не совпадают',
@@ -81,55 +83,53 @@ const RegistrationForm: FC<RegistrationFormProps> = ({
 					placeholder="Электронная почта"
 					type="email"
 					required
+					error={errors.email?.message}
 					{...register('email')}
 				>
 					<MailIcon className={iconStyles.customInput__icon} />
 				</CustomInput>
-				{errors.email && <span>{errors.email.message}</span>}
 
 				<CustomInput
 					isDark={false}
 					placeholder="Имя"
 					required
+					error={errors.name?.message}
 					{...register('name')}
 				>
 					<UserIcon className={iconStyles.customInput__icon} />
 				</CustomInput>
-				{errors.name && <span>{errors.name.message}</span>}
 
 				<CustomInput
 					isDark={false}
 					placeholder="Фамилия"
 					required
+					error={errors.surname?.message}
 					{...register('surname')}
 				>
 					<UserIcon className={iconStyles.customInput__icon} />
 				</CustomInput>
-				{errors.surname && <span>{errors.surname.message}</span>}
 
 				<CustomInput
 					isDark={false}
 					placeholder="Пароль"
 					type="password"
 					required
+					error={errors.password?.message}
 					{...register('password')}
 				>
 					<KeyIcon className={iconStyles.customInput__icon} />
 				</CustomInput>
-				{errors.password && <span>{errors.password.message}</span>}
 
 				<CustomInput
 					isDark={false}
 					placeholder="Подтвердите пароль"
 					type="password"
 					required
+					error={errors.confirmPassword?.message}
 					{...register('confirmPassword')}
 				>
 					<KeyIcon className={iconStyles.customInput__icon} />
 				</CustomInput>
-				{errors.confirmPassword && (
-					<span>{errors.confirmPassword.message}</span>
-				)}
 			</div>
 			<CustomButton>Создать аккаунт</CustomButton>
 

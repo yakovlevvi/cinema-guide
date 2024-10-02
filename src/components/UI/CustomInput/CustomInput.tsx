@@ -11,11 +11,12 @@ interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	children?: ReactNode
 	isDark: boolean
 	className?: string
+	error?: string
 }
 
 const CustomInput: FC<CustomInputProps> = forwardRef(
 	(
-		{ children, isDark, className, ...props },
+		{ children, isDark, className, error, ...props },
 		ref: ForwardedRef<HTMLInputElement>
 	) => {
 		const classes = [styles['customInput']]
@@ -23,6 +24,10 @@ const CustomInput: FC<CustomInputProps> = forwardRef(
 		if (isDark) {
 			classes.push(styles['customInput--dark'])
 		}
+		if (error) {
+			classes.push(styles['customInput--error'])
+		}
+
 		if (className) {
 			classes.push(className)
 		}
@@ -35,6 +40,7 @@ const CustomInput: FC<CustomInputProps> = forwardRef(
 					{...props}
 					ref={ref}
 				/>
+				{error && <span className={styles['customInput__error']}>{error}</span>}
 				{children}
 			</div>
 		)
