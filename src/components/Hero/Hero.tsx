@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { FC, MouseEventHandler, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addToFavorites, removeFromFavorites } from '../../api/Favorites'
@@ -21,14 +21,14 @@ import styles from './Hero.module.scss'
 
 interface HeroProps {
 	film: Film
-	refetch: MouseEventHandler<HTMLButtonElement> | undefined
+	refetch: () => void
 	isRandomFilm: boolean
 }
 
 const Hero: FC<HeroProps> = ({ film, refetch, isRandomFilm }) => {
 	const [trailerModal, setTrailerModal] = useState<boolean>(false)
 	const [inFavorites, setInFavorites] = useState<boolean>(false)
-	const [authModal, setAuthModal] = useState(false)
+	const [authModal, setAuthModal] = useState<boolean>(false)
 
 	const favoritesMutation = useMutation(
 		{
@@ -77,6 +77,14 @@ const Hero: FC<HeroProps> = ({ film, refetch, isRandomFilm }) => {
 						src={film.backdropUrl}
 						alt={film.title}
 					/>
+				) : film.posterUrl ? (
+					<CustomImage
+						className={styles.hero__img}
+						width={900}
+						height={680}
+						src={film.posterUrl}
+						alt={film.title}
+					/>
 				) : (
 					<span className={styles.hero__imgText}>{film.title}</span>
 				)}
@@ -86,11 +94,16 @@ const Hero: FC<HeroProps> = ({ film, refetch, isRandomFilm }) => {
 					<div className={styles['hero__info']}>
 						<FilmHeading film={film} search={false} />
 						<h2 className={styles.hero__title}>{film.title}</h2>
-						{film.plot && (
-							<p className={styles.hero__description}>
-								{isRandomFilm ? film.plot.split('. ')[0] + '...' : film.plot}
-							</p>
-						)}
+						{film.plot &&
+							(isRandomFilm ? (
+								<p
+									className={`${styles['hero__description']} ${styles['hero__description--cut']}`}
+								>
+									{film.plot}
+								</p>
+							) : (
+								<p className={`${styles['hero__description']}`}>{film.plot}</p>
+							))}
 					</div>
 					<div
 						className={styles.hero__btns}
@@ -135,7 +148,10 @@ const Hero: FC<HeroProps> = ({ film, refetch, isRandomFilm }) => {
 							{isRandomFilm && (
 								<CustomButton
 									className={btnStyles['btn--icon']}
-									onClick={refetch}
+									onClick={() => {
+										setInFavorites(false)
+										refetch()
+									}}
 								>
 									<RefreshIcon />
 								</CustomButton>

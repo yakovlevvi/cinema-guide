@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Loader from '../Loader/Loader'
 import styles from './CustomImage.module.scss'
 
@@ -10,8 +10,12 @@ interface CustomImageProps {
 	height?: number
 }
 
-const CustomImage: FC<CustomImageProps> = ({ className, ...props }) => {
-	const [isLoaded, setIsLoaded] = useState(false)
+const CustomImage: FC<CustomImageProps> = ({ className, src, ...props }) => {
+	const [isLoaded, setIsLoaded] = useState<boolean>(false)
+
+	useEffect(() => {
+		setIsLoaded(false)
+	}, [src])
 
 	const imgClasses = [styles['img']]
 
@@ -29,6 +33,7 @@ const CustomImage: FC<CustomImageProps> = ({ className, ...props }) => {
 			<img
 				className={imgClasses.join(' ')}
 				onLoad={() => setIsLoaded(true)}
+				src={src}
 				{...props}
 			/>
 		</>
